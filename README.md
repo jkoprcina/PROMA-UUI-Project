@@ -1,2 +1,14 @@
-# PROMA-UUI-Project
-A project to hopefully pass programing mobile games and artificial inteligence
+# A Blank PhoneGap App
+
+## Usage
+
+### PhoneGap CLI
+
+    $ phonegap create my-app --template blank
+
+### Desktop
+
+In your browser, open the file:
+
+    /www/index.html
+
