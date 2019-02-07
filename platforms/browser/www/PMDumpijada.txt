@@ -1,0 +1,26 @@
+Igre 11
+    Fizicki, infinite tries if empty 
+        Tapping
+        Push ups
+    Odjeli
+        dev --> Finding bug, one try
+        UI dev --> Making a quick site
+        Design --> Drawing logotip, comp or hand
+        Multimedija --> Best photo
+        Marketing --> Best reklama
+    Games
+        Cod 4 training, 3 tries
+        Fastest run, a racing game, 3 tries 
+    Other
+        Typing speed, 3 tries
+        Darts, 3 tries
+
+Financije
+    pizza 10*70 --> 700kn
+    drinks 10*12 --> 120kn
+    medalje 15ak * 20ak ~~> 300 kn
+    chips i grickalice 20*10 --> 200 kn
+    Sum => 1400 kn
+
+App
+    To be continues/discused 

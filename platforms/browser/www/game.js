@@ -4,9 +4,6 @@ var grid = [];
 var numberOfMovesSoFar = 0;
 var numverOfMovesAllowed = 10;
 
-var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-var height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
-
 var labirinth = 
 "1111111111111111111" +
 "1002100010101010001" +
@@ -42,13 +39,14 @@ class Cell {
         stroke(255);
         //painting the labirinth      
         if(number == 1){
-            fill(0,0,0);
+            fill(82, 58, 52);
             this.color = "black";
             this.actualColor = "black";
             rect(x, y, w, w);
         }
         else if(number == 2){
-            fill(255,0,255);
+            stroke(249, 212, 27);
+            fill(249, 212, 27);
             this.color = "purple";
             this.actualColor = "white";
             current = this;
@@ -63,7 +61,7 @@ class Cell {
             objective = this;
         }
         else{
-            fill(255,255,255);
+            fill(239, 234, 213);
             this.color = "white";
             this.actualColor = "white";
             rect(x, y, w, w); 
@@ -88,22 +86,22 @@ class Cell {
             {
                 var x = cell.i*w;
                 var y = cell.j*w;
-                stroke(255); 
-                fill(255,255,255);
+                stroke(247, 240, 208); 
+                fill(247, 240, 208);
                 rect(x, y, w, w);}
             if(cell.color == "purple")
             {
                 var x = cell.i*w;
                 var y = cell.j*w;
-                stroke(255); 
-                fill(255,0,255);
+                stroke(249, 212, 27); 
+                fill(249, 212, 27);
                 rect(x, y, w, w);}
             else if(cell.actualColor == "black")
             {
                 var x = cell.i*w;
                 var y = cell.j*w;
-                stroke(255); 
-                fill(0,0,0);
+                stroke(82, 58, 52); 
+                fill(82, 58, 52);
                 rect(x, y, w, w);}}
         else
         {   
@@ -111,8 +109,8 @@ class Cell {
             {
             var x = cell.i*w;
             var y = cell.j*w;
-            stroke(255); 
-            fill(211,211,211);
+            stroke(204, 192, 189); 
+            fill(204, 192, 189);
             rect(x, y, w, w);}
         }
     }
@@ -125,22 +123,22 @@ class Cell {
             {
                 var x = cell.i*w;
                 var y = cell.j*w;
-                stroke(255); 
-                fill(255,255,255);
+                stroke(247, 240, 208); 
+                fill(247, 240, 208);
                 rect(x, y, w, w);}
             if(cell.color == "purple")
             {
                 var x = cell.i*w;
                 var y = cell.j*w;
-                stroke(255); 
-                fill(255,0,255);
+                stroke(249, 212, 27); 
+                fill(249, 212, 27);
                 rect(x, y, w, w);}
             else if(cell.actualColor == "black")
             {
                 var x = cell.i*w;
                 var y = cell.j*w;
-                stroke(255); 
-                fill(0,0,0);
+                stroke(82, 58, 52); 
+                fill(82, 58, 52);
                 rect(x, y, w, w);}
         }
     }
@@ -153,9 +151,9 @@ class Cell {
             //making the users square white
             var x = current.i*w;
             var y = current.j*w;
-            stroke(255); 
+            stroke(247, 240, 208); 
             current.color = "white";
-            fill(255,255,255);
+            fill(247, 240, 208);
             rect(x, y, w, w);
             //making the new cell purple
             current = newCell;
@@ -181,15 +179,15 @@ class Cell {
             //making the users square white
             var x = current.i*w;
             var y = current.j*w;
-            stroke(255); 
+            stroke(247, 240, 208); 
             current.color = "white";
-            fill(255,255,255);
+            fill(247, 240, 208);
             rect(x, y, w, w);
             //making the new cell purple
             current = newCell;
             var x = current.i*w;
             var y = current.j*w;
-            stroke(255); 
+            stroke(82, 58, 52); 
             current.color = "purple";
             fill(255,0,255);
             rect(x, y, w, w);}
@@ -209,9 +207,9 @@ class Cell {
             //making the users square white
             var x = current.i*w;
             var y = current.j*w;
-            stroke(255); 
+            stroke(247, 240, 208); 
             current.color = "white";
-            fill(255,255,255);
+            fill(247, 240, 208);
             rect(x, y, w, w);
             //making the new cell purple
             current = newCell;

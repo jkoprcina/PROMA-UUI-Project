@@ -1,0 +1,56 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #F2EAC6;
+}
+
+.title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    color:#bba11e;
+}
+
+.specialLetter {
+    font-family: 'Merienda One', cursive !important;
+    font-size: 3.1rem;
+    color:#bba11e;
+}
+
+.buttonWrapper {
+    margin-top: 15px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    height: 55px;
+    width: 85%;
+    border: 2px solid #E5CA42;
+    background-color:#F2DD6E;
+    margin: 5px 0;
+    border-radius: 3px;
+    transition: 0.3s all;
+    font-family: Arial, "sans-serif";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fffce6;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.button:visited{
+    /* TODO : Fill if underlined after visited*/
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #E5CD54;
+    color:white;
+}
