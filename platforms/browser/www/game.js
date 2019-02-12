@@ -2,7 +2,6 @@ var cols, rows;
 var w = 25;
 var grid = [];
 var numberOfMovesSoFar = 0;
-var numverOfMovesAllowed = 10;
 
 var labirinth = 
 "1111111111111111111" +
@@ -31,7 +30,7 @@ class Cell {
     constructor(i, j) {
         this.i = i;
         this.j = j;
-        var actualColor;
+        this.actualColor;
       }
     show(number) {
         var x = this.i*w;
@@ -164,12 +163,11 @@ class Cell {
             fill(255,0,255);
             rect(x, y, w, w);}
             numberOfMovesSoFar += 1
-            if(numberOfMovesSoFar >= numverOfMovesAllowed){
-                console.log("You lost!");}
             newCell.paintingMoveMoving();
         //checking did we reach the goal
         if(newCell.color == "blue") {
-            console.log("Winner!!!")}}
+            winner() }
+    }
     right(){
         var newCell;
         for(var k = 0; k < grid.length; k++){
@@ -192,12 +190,11 @@ class Cell {
             fill(255,0,255);
             rect(x, y, w, w);}
             numberOfMovesSoFar += 1
-            if(numberOfMovesSoFar >= numverOfMovesAllowed){
-                console.log("You lost!");}
             newCell.paintingMoveMoving();
         //checking did we reach the goal
         if(newCell.color == "blue") {
-            console.log("Winner!!!")}}
+            winner()}
+        }
     down(){
         var newCell;
         for(var k = 0; k < grid.length; k++){
@@ -220,12 +217,11 @@ class Cell {
             fill(255,0,255);
             rect(x, y, w, w);}
             numberOfMovesSoFar += 1
-            if(numberOfMovesSoFar >= numverOfMovesAllowed){
-                console.log("You lost!");}
-                newCell.paintingMoveMoving();
+            newCell.paintingMoveMoving();
         //checking did we reach the goal   
         if(newCell.color == "blue") {
-            console.log("Winner!!!")}}
+            winner()}
+        }
     left(){
         var newCell;
         for(var k = 0; k < grid.length; k++){
@@ -242,18 +238,17 @@ class Cell {
             //making the new cell purple
             current = newCell;
             var x = current.i*w;
-            var y = current.j*w;
+            var y = current.j*w;    
             stroke(255); 
             current.color = "purple";
             fill(255,0,255);
             rect(x, y, w, w);}
             numberOfMovesSoFar += 1
-            if(numberOfMovesSoFar >= numverOfMovesAllowed){
-                console.log("You lost!");}
             newCell.paintingMoveMoving();
         //checking did we reach the goal 
         if(newCell.color == "blue") {
-            console.log("Winner!!!")}}
+            winner()}
+        };
 }
 
 function setup() {
@@ -261,7 +256,7 @@ function setup() {
     canvas.parent("canvasWrapper");
     cols =  floor(width/w);
     rows = floor(height/w);
-
+    numberOfMovesSoFar = 0;
     for (var i = 0; i < rows; i++){
         for (var j = 0; j < cols; j++){
             var cell = new Cell(i,j);
@@ -276,5 +271,47 @@ function setup() {
     document.querySelector("#buttonRight").addEventListener("click", current.right);
     document.querySelector("#buttonDown").addEventListener("click", current.down);
     document.querySelector("#buttonLeft").addEventListener("click", current.left);
+}
+
+function restart() {
+    numberOfMovesSoFar = 0;
+    for (var i = 0; i < grid.length; i++){
+        grid[i].show(labirinth[i]);
+    }
+    current.paintingMoveStart();
+}
+function winner() {
+    var text, name;
+    var x = current.i*w;
+    var y = current.j*w;
+    stroke(247, 240, 208); 
+    fill(247, 240, 208);
+    rect(x, y, w, w);
+    var x = objective.i*w;
+    var y = objective.j*w;
+    stroke(249, 212, 27); 
+    fill(249, 212, 27);
+    rect(x, y, w, w);
+    do {
+        name = prompt("Enter name:");
+    }while (name==null || name=="");
+    text = name +" in "+ numberOfMovesSoFar + " moves";
+    localStorage.setItem(name, numberOfMovesSoFar);
+    console.log(text);
+    var playAgain = prompt("Do you wish to play again (yes/no):");
+    if(playAgain.toLowerCase() == "yes"){
+        restart();}
+    else{
+        window.location.replace("index.html");}
+}
+
+function alwaysRight() {
+    if(left() != true){
+        if(down() != true){
+            if(right() != true){
+                up();
+            }
+        }
+    }
 }
 
