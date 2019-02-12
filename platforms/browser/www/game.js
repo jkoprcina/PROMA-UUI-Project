@@ -31,7 +31,9 @@ class Cell {
         this.i = i;
         this.j = j;
         this.actualColor;
+        this.number;
       }
+    //a method to set which colour should the cells be acording to the labirinth 
     show(number) {
         var x = this.i*w;
         var y = this.j*w;
@@ -41,6 +43,7 @@ class Cell {
             fill(82, 58, 52);
             this.color = "black";
             this.actualColor = "black";
+            this.number = 9999;
             rect(x, y, w, w);
         }
         else if(number == 2){
@@ -49,13 +52,15 @@ class Cell {
             this.color = "purple";
             this.actualColor = "white";
             current = this;
+            this.number = 0;
             rect(x, y, w, w);
             current = this;
         }
         else if(number == 3){
             fill(0,255,255);
             this.color = "blue";
-            this.actualColor = "blue";
+            this.actualColor = "white";
+            this.number = 0;
             rect(x, y, w, w);
             objective = this;
         }
@@ -63,19 +68,23 @@ class Cell {
             fill(239, 234, 213);
             this.color = "white";
             this.actualColor = "white";
+            this.number = 0;
             rect(x, y, w, w); 
         } 
     }
+    //a method to paint just the first nine cells + goal
     paintingMoveStart(){
         for(var k = 0; k < grid.length; k++){
             grid[k].paint(grid[k]);
         }
     }
+    //a method that is called whenever the cell the player controles moves
     paintingMoveMoving(){
         for(var k = 0; k < grid.length; k++){
             grid[k].paintNew(grid[k]);
         }
     }
+    //called by paintingMoveStart, does the literal painting
     paint(cell) {
         if((cell.i - 1 == current.i && cell.j - 1 == current.j) || (cell.i == current.i && cell.j - 1 == current.j) || (cell.i + 1 == current.i && cell.j - 1 == current.j)
         || (cell.i - 1 == current.i && cell.j     == current.j) || (cell.i == current.i && cell.j     == current.j) || (cell.i + 1 == current.i && cell.j     == current.j)        
@@ -110,9 +119,9 @@ class Cell {
             var y = cell.j*w;
             stroke(204, 192, 189); 
             fill(204, 192, 189);
-            rect(x, y, w, w);}
-        }
+            rect(x, y, w, w);}}
     }
+    //called by paintingMoveMoving, does the literal painting
     paintNew(cell) {
         if((cell.i - 1 == current.i && cell.j - 1 == current.j) || (cell.i == current.i && cell.j - 1 == current.j) || (cell.i + 1 == current.i && cell.j - 1 == current.j)
         || (cell.i - 1 == current.i && cell.j     == current.j) || (cell.i == current.i && cell.j     == current.j) || (cell.i + 1 == current.i && cell.j     == current.j)        
@@ -141,6 +150,31 @@ class Cell {
                 rect(x, y, w, w);}
         }
     }
+    //Giving all the white cells a numerical value for easier use of "valne fronta"
+    // valnaFrontaSetup(){
+    //     var currentNumber = 1;
+    //     var basicList = [];
+    //     var temporaryList = [];
+    //     objective.number = currentNumber;
+    //     basicList.push(objective);
+    //     do{
+    //     temporaryList = [];
+    //     currentNumber += 1;
+    //     basicList.forEach(function(item) {
+    //         for(var k = 0; k < grid.length; k++){
+    //             if((grid[k].i == item.i && grid[k].j - 1 == item.j) || /*Up*/ 
+    //                (grid[k].i + 1 == item.i && grid[k].j == item.j) || /*Right*/
+    //                (grid[k].i - 1 == item.i && grid[k].j == item.j) || /*Left*/
+    //                (grid[k].i == item.i && grid[k].j + 1 == item.j)    /*Down*/)
+    //             item.number = currentNumber;
+    //             temporaryList.push(item);
+    //         }
+    //     })
+    //     console.log("Novo");
+    //     basicList = temporaryList;
+    //     }while(temporaryList.length != 0);
+    //}
+    //methods up, right, down, left which allow the player to move his cell to white cells
     up(){
         var newCell;
         for(var k = 0; k < grid.length; k++){
@@ -267,6 +301,7 @@ function setup() {
         grid[i].show(labirinth[i]);
     }
     current.paintingMoveStart();
+    // grid[0].valnaFrontaSetup();
     document.querySelector("#buttonUp").addEventListener("click", current.up);
     document.querySelector("#buttonRight").addEventListener("click", current.right);
     document.querySelector("#buttonDown").addEventListener("click", current.down);
@@ -303,15 +338,5 @@ function winner() {
         restart();}
     else{
         window.location.replace("index.html");}
-}
-
-function alwaysRight() {
-    if(left() != true){
-        if(down() != true){
-            if(right() != true){
-                up();
-            }
-        }
-    }
 }
 
