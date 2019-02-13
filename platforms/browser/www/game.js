@@ -47,19 +47,16 @@ class Cell {
             rect(x, y, w, w);
         }
         else if(number == 2){
-            stroke(249, 212, 27);
             fill(249, 212, 27);
             this.color = "purple";
             this.actualColor = "white";
-            current = this;
             this.number = 0;
             rect(x, y, w, w);
             current = this;
         }
         else if(number == 3){
             fill(0,255,255);
-            this.color = "blue";
-            this.actualColor = "white";
+            this.actualColor = "blue";
             this.number = 0;
             rect(x, y, w, w);
             objective = this;
@@ -72,6 +69,34 @@ class Cell {
             rect(x, y, w, w); 
         } 
     }
+    makeWhite(cell){
+        var x = cell.i*w;
+        var y = cell.j*w;
+        stroke(247, 240, 208); 
+        fill(247, 240, 208);
+        rect(x, y, w, w);
+    }
+    makePurple(cell){
+        var x = cell.i*w;
+        var y = cell.j*w;
+        stroke(249, 212, 27); 
+        fill(249, 212, 27);
+        rect(x, y, w, w);
+    }
+    makeBlack(cell){
+        var x = cell.i*w;
+        var y = cell.j*w;
+        stroke(82, 58, 52); 
+        fill(82, 58, 52);
+        rect(x, y, w, w);
+    }
+    makeBlue(cell){
+        var x = cell.i*w;
+        var y = cell.j*w;
+        stroke(204, 192, 189); 
+        fill(204, 192, 189);
+        rect(x, y, w, w);
+    }
     //a method to paint just the first nine cells + goal
     paintingMoveStart(){
         for(var k = 0; k < grid.length; k++){
@@ -83,206 +108,130 @@ class Cell {
         for(var k = 0; k < grid.length; k++){
             grid[k].paintNew(grid[k]);
         }
+        if(current.i == objective.i && current.j == objective.j){
+            winner();
+        }
     }
     //called by paintingMoveStart, does the literal painting
     paint(cell) {
         if((cell.i - 1 == current.i && cell.j - 1 == current.j) || (cell.i == current.i && cell.j - 1 == current.j) || (cell.i + 1 == current.i && cell.j - 1 == current.j)
         || (cell.i - 1 == current.i && cell.j     == current.j) || (cell.i == current.i && cell.j     == current.j) || (cell.i + 1 == current.i && cell.j     == current.j)        
-        || (cell.i - 1 == current.i && cell.j + 1 == current.j) || (cell.i == current.i && cell.j + 1 == current.j) || (cell.i + 1 == current.i && cell.j + 1 == current.j))
-        {
-            if(cell.actualColor == "white")
-            {
-                var x = cell.i*w;
-                var y = cell.j*w;
-                stroke(247, 240, 208); 
-                fill(247, 240, 208);
-                rect(x, y, w, w);}
-            if(cell.color == "purple")
-            {
-                var x = cell.i*w;
-                var y = cell.j*w;
-                stroke(249, 212, 27); 
-                fill(249, 212, 27);
-                rect(x, y, w, w);}
-            else if(cell.actualColor == "black")
-            {
-                var x = cell.i*w;
-                var y = cell.j*w;
-                stroke(82, 58, 52); 
-                fill(82, 58, 52);
-                rect(x, y, w, w);}}
-        else
-        {   
-            if(cell.color != "blue")
-            {
-            var x = cell.i*w;
-            var y = cell.j*w;
-            stroke(204, 192, 189); 
-            fill(204, 192, 189);
-            rect(x, y, w, w);}}
+        || (cell.i - 1 == current.i && cell.j + 1 == current.j) || (cell.i == current.i && cell.j + 1 == current.j) || (cell.i + 1 == current.i && cell.j + 1 == current.j)){
+            if(cell.actualColor == "white"){
+                cell.makeWhite(cell);
+            }
+            if(cell.color == "purple"){
+                cell.makePurple(cell);
+            }
+            else if(cell.actualColor == "black"){
+                cell.makeBlack(cell);
+            }
+        }
+        else{   
+            if(cell.actualColor != "blue"){
+                cell.makeBlue(cell);
+            }
+        }
     }
     //called by paintingMoveMoving, does the literal painting
     paintNew(cell) {
         if((cell.i - 1 == current.i && cell.j - 1 == current.j) || (cell.i == current.i && cell.j - 1 == current.j) || (cell.i + 1 == current.i && cell.j - 1 == current.j)
         || (cell.i - 1 == current.i && cell.j     == current.j) || (cell.i == current.i && cell.j     == current.j) || (cell.i + 1 == current.i && cell.j     == current.j)        
-        || (cell.i - 1 == current.i && cell.j + 1 == current.j) || (cell.i == current.i && cell.j + 1 == current.j) || (cell.i + 1 == current.i && cell.j + 1 == current.j))
-        {
-            if(cell.actualColor == "white")
-            {
-                var x = cell.i*w;
-                var y = cell.j*w;
-                stroke(247, 240, 208); 
-                fill(247, 240, 208);
-                rect(x, y, w, w);}
-            if(cell.color == "purple")
-            {
-                var x = cell.i*w;
-                var y = cell.j*w;
-                stroke(249, 212, 27); 
-                fill(249, 212, 27);
-                rect(x, y, w, w);}
-            else if(cell.actualColor == "black")
-            {
-                var x = cell.i*w;
-                var y = cell.j*w;
-                stroke(82, 58, 52); 
-                fill(82, 58, 52);
-                rect(x, y, w, w);}
+        || (cell.i - 1 == current.i && cell.j + 1 == current.j) || (cell.i == current.i && cell.j + 1 == current.j) || (cell.i + 1 == current.i && cell.j + 1 == current.j)){
+            if(cell.actualColor == "white"){   
+                cell.makeWhite(cell);
+            }
+            if(cell.color == "purple"){
+                cell.makePurple(cell);
+            }
+            else if(cell.actualColor == "black"){
+                cell.makeBlack(cell);
+            }
         }
     }
     //Giving all the white cells a numerical value for easier use of "valne fronta"
-    // valnaFrontaSetup(){
-    //     var currentNumber = 1;
-    //     var basicList = [];
-    //     var temporaryList = [];
-    //     objective.number = currentNumber;
-    //     basicList.push(objective);
-    //     do{
-    //     temporaryList = [];
-    //     currentNumber += 1;
-    //     basicList.forEach(function(item) {
-    //         for(var k = 0; k < grid.length; k++){
-    //             if((grid[k].i == item.i && grid[k].j - 1 == item.j) || /*Up*/ 
-    //                (grid[k].i + 1 == item.i && grid[k].j == item.j) || /*Right*/
-    //                (grid[k].i - 1 == item.i && grid[k].j == item.j) || /*Left*/
-    //                (grid[k].i == item.i && grid[k].j + 1 == item.j)    /*Down*/)
-    //             item.number = currentNumber;
-    //             temporaryList.push(item);
-    //         }
-    //     })
-    //     console.log("Novo");
-    //     basicList = temporaryList;
-    //     }while(temporaryList.length != 0);
-    //}
+    valnaFrontaSetup(){
+        var currentNumber = 1;
+        var basicList = []; 
+        var temporaryList;
+        objective.number = currentNumber;
+        basicList.push(objective);
+        do{
+        temporaryList = [];
+        currentNumber += 1;
+        basicList.forEach(function(item) {
+            for(var k = 0; k < grid.length; k++){
+                if((grid[k].i == item.i && grid[k].j - 1 == item.j && grid[k].number == 0) || /*Up*/ 
+                   (grid[k].i + 1 == item.i && grid[k].j == item.j && grid[k].number == 0) || /*Right*/
+                   (grid[k].i - 1 == item.i && grid[k].j == item.j && grid[k].number == 0) || /*Left*/
+                   (grid[k].i == item.i && grid[k].j + 1 == item.j && grid[k].number == 0)    /*Down*/){
+                grid[k].number = currentNumber;
+                temporaryList.push(grid[k]);
+            }}
+        })
+        basicList = temporaryList;
+        }while(temporaryList.length != 0);
+    }
+    valnaFronta(){
+        for(var k = 0; k < grid.length; k++){
+            if((grid[k].i == current.i && grid[k].j - 1 == current.j && grid[k].number != 9999) || /*Up*/ 
+                (grid[k].i + 1 == current.i && grid[k].j == current.j && grid[k].number != 9999) || /*Right*/
+                (grid[k].i - 1 == current.i && grid[k].j == current.j && grid[k].number != 9999) || /*Left*/
+                (grid[k].i == current.i && grid[k].j + 1 == current.j && grid[k].number != 9999)    /*Down*/){
+                if(grid[k].number < current.number){
+                    var newCell = grid[k];
+                    newCell.upRightDownLeftPainting(newCell);
+                    return true;
+                }
+            }
+        }
+    }
     //methods up, right, down, left which allow the player to move his cell to white cells
     up(){
         var newCell;
         for(var k = 0; k < grid.length; k++){
-            if(grid[k].i == current.i && grid[k].j == current.j - 1){
-                newCell = grid[k];}}
-        if(newCell.color == "white"){
-            //making the users square white
-            var x = current.i*w;
-            var y = current.j*w;
-            stroke(247, 240, 208); 
-            current.color = "white";
-            fill(247, 240, 208);
-            rect(x, y, w, w);
-            //making the new cell purple
-            current = newCell;
-            var x = current.i*w;
-            var y = current.j*w;
-            stroke(255); 
-            current.color = "purple";
-            fill(255,0,255);
-            rect(x, y, w, w);}
-            numberOfMovesSoFar += 1
-            newCell.paintingMoveMoving();
-        //checking did we reach the goal
-        if(newCell.color == "blue") {
-            winner() }
+            if(grid[k].i == current.i && grid[k].j == current.j - 1 && grid[k].number != 9999){
+                newCell = grid[k];
+                newCell.upRightDownLeftPainting(newCell);
+            }
+        }
     }
     right(){
         var newCell;
         for(var k = 0; k < grid.length; k++){
-            if(grid[k].i == current.i + 1 && grid[k].j == current.j){
-                newCell = grid[k];}}
-        if(newCell.color == "white"){
-            //making the users square white
-            var x = current.i*w;
-            var y = current.j*w;
-            stroke(247, 240, 208); 
-            current.color = "white";
-            fill(247, 240, 208);
-            rect(x, y, w, w);
-            //making the new cell purple
-            current = newCell;
-            var x = current.i*w;
-            var y = current.j*w;
-            stroke(82, 58, 52); 
-            current.color = "purple";
-            fill(255,0,255);
-            rect(x, y, w, w);}
-            numberOfMovesSoFar += 1
-            newCell.paintingMoveMoving();
-        //checking did we reach the goal
-        if(newCell.color == "blue") {
-            winner()}
+            if(grid[k].i == current.i + 1 && grid[k].j == current.j && grid[k].number != 9999){
+                newCell = grid[k];
+                newCell.upRightDownLeftPainting(newCell);
+            }
         }
+    }
     down(){
         var newCell;
         for(var k = 0; k < grid.length; k++){
-            if(grid[k].i == current.i && grid[k].j == current.j + 1){
-                newCell = grid[k];}}
-        if(newCell.color == "white"){
-            //making the users square white
-            var x = current.i*w;
-            var y = current.j*w;
-            stroke(247, 240, 208); 
-            current.color = "white";
-            fill(247, 240, 208);
-            rect(x, y, w, w);
-            //making the new cell purple
-            current = newCell;
-            var x = current.i*w;
-            var y = current.j*w;
-            stroke(255); 
-            current.color = "purple";
-            fill(255,0,255);
-            rect(x, y, w, w);}
-            numberOfMovesSoFar += 1
-            newCell.paintingMoveMoving();
-        //checking did we reach the goal   
-        if(newCell.color == "blue") {
-            winner()}
+            if(grid[k].i == current.i && grid[k].j == current.j + 1 && grid[k].number != 9999){
+                newCell = grid[k];
+                newCell.upRightDownLeftPainting(newCell);
+            }
         }
+    }
     left(){
         var newCell;
         for(var k = 0; k < grid.length; k++){
-            if(grid[k].i == current.i - 1 && grid[k].j == current.j){
-                newCell = grid[k];}}
-        if(newCell.color == "white"){
-            //making the users square white
-            var x = current.i*w;
-            var y = current.j*w;
-            stroke(255); 
-            current.color = "white";
-            fill(255,255,255);
-            rect(x, y, w, w);
-            //making the new cell purple
-            current = newCell;
-            var x = current.i*w;
-            var y = current.j*w;    
-            stroke(255); 
-            current.color = "purple";
-            fill(255,0,255);
-            rect(x, y, w, w);}
-            numberOfMovesSoFar += 1
-            newCell.paintingMoveMoving();
-        //checking did we reach the goal 
-        if(newCell.color == "blue") {
-            winner()}
-        };
+            if(grid[k].i == current.i - 1 && grid[k].j == current.j && grid[k].number != 9999){
+                newCell = grid[k];
+                newCell.upRightDownLeftPainting(newCell);
+            }
+        }
+    }
+    upRightDownLeftPainting(newCell){
+        current.makeWhite(current); 
+        current.color = "white";
+        current = newCell;
+        current.makePurple(current); 
+        current.color = "purple";
+        numberOfMovesSoFar += 1;
+        newCell.paintingMoveMoving();
+    }
 }
 
 function setup() {
@@ -301,11 +250,12 @@ function setup() {
         grid[i].show(labirinth[i]);
     }
     current.paintingMoveStart();
-    // grid[0].valnaFrontaSetup();
+    grid[0].valnaFrontaSetup();
     document.querySelector("#buttonUp").addEventListener("click", current.up);
     document.querySelector("#buttonRight").addEventListener("click", current.right);
     document.querySelector("#buttonDown").addEventListener("click", current.down);
     document.querySelector("#buttonLeft").addEventListener("click", current.left);
+    document.querySelector("#valnaFronta").addEventListener("click", current.valnaFronta);
 }
 
 function restart() {
@@ -316,27 +266,18 @@ function restart() {
     current.paintingMoveStart();
 }
 function winner() {
-    var text, name;
-    var x = current.i*w;
-    var y = current.j*w;
-    stroke(247, 240, 208); 
-    fill(247, 240, 208);
-    rect(x, y, w, w);
-    var x = objective.i*w;
-    var y = objective.j*w;
-    stroke(249, 212, 27); 
-    fill(249, 212, 27);
-    rect(x, y, w, w);
+    var name;
+    current.makeWhite(current);
+    objective.makePurple(objective);
+    setTimeout(function(){
     do {
         name = prompt("Enter name:");
     }while (name==null || name=="");
-    text = name +" in "+ numberOfMovesSoFar + " moves";
     localStorage.setItem(name, numberOfMovesSoFar);
-    console.log(text);
     var playAgain = prompt("Do you wish to play again (yes/no):");
     if(playAgain.toLowerCase() == "yes"){
         restart();}
     else{
-        window.location.replace("index.html");}
+        window.location.replace("index.html");}},30);
 }
 

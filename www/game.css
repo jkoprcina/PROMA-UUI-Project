@@ -60,6 +60,24 @@ color: #523A34;
 	grid-area: right;
 }
 
+.button {
+    height: 55px;
+    width: 30%;
+    border: 2px solid #E5CA42;
+    background-color:#F2DD6E;
+    margin: 5px 0;
+    border-radius: 3px;
+    transition: 0.3s all;
+    font-family: Arial, "sans-serif";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fffce6;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 @keyframes pulse {
 	0% {
 		box-shadow: 0 0 0 0 rgba(78, 182, 223, 0.4);
