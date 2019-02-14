@@ -17,7 +17,7 @@ for (var i = 0; i < len; i++) {
     points = points.sort();
 }
 var toAdd = "";
-points.filter(point => toAdd += point[1] + " : "+ point[0] + "\n");
+points.filter(point => toAdd += point[1] + " : "+ point[0]);
 
 document.getElementById('list').innerHTML = toAdd;
 console.log(toAdd);

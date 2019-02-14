@@ -2,6 +2,7 @@ var cols, rows;
 var w = 25;
 var grid = [];
 var numberOfMovesSoFar = 0;
+document.querySelector("#numberOfMovesLabel").innerHTML = numberOfMovesSoFar;
 
 var labirinth = 
 "1111111111111111111" +
@@ -103,7 +104,7 @@ class Cell {
             grid[k].paint(grid[k]);
         }
     }
-    //a method that is called whenever the cell the player controles moves
+    //a method that is called whenever the current cell moves
     paintingMoveMoving(){
         for(var k = 0; k < grid.length; k++){
             grid[k].paintNew(grid[k]);
@@ -230,6 +231,7 @@ class Cell {
         current.makePurple(current); 
         current.color = "purple";
         numberOfMovesSoFar += 1;
+        document.querySelector("#numberOfMovesLabel").innerHTML = numberOfMovesSoFar;
         newCell.paintingMoveMoving();
     }
 }
@@ -256,10 +258,12 @@ function setup() {
     document.querySelector("#buttonDown").addEventListener("click", current.down);
     document.querySelector("#buttonLeft").addEventListener("click", current.left);
     document.querySelector("#valnaFronta").addEventListener("click", current.valnaFronta);
+    document.querySelector("#exit").addEventListener("click", exiting);
 }
 
 function restart() {
     numberOfMovesSoFar = 0;
+    document.querySelector("#numberOfMovesLabel").innerHTML = numberOfMovesSoFar;
     for (var i = 0; i < grid.length; i++){
         grid[i].show(labirinth[i]);
     }
@@ -279,5 +283,10 @@ function winner() {
         restart();}
     else{
         window.location.replace("index.html");}},30);
+}
+
+function exiting() {
+    console.log("no");
+    window.location.replace("index.html");
 }
 

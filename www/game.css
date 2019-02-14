@@ -21,7 +21,6 @@ canvas {
 	grid-template-rows: 50px 50px 50px;
 	grid-template-areas: ". up ." " left . right" ". down .";
 }
-
 .arrow{
     display: flex;
     justify-content: center;
@@ -30,13 +29,13 @@ canvas {
 
 .arrow i {
 	border-radius: 50%;
-	    height: 80%;
-		width: 80%;
-		display: flex;
+	height: 80%;
+	width: 80%;
+	display: flex;
     justify-content: center;
-		align-items: center;
-		box-shadow: 0 0 0 rgba(78, 182, 223, 0.4);	
-color: #523A34;
+	align-items: center;
+	box-shadow: 0 0 0 rgba(78, 182, 223, 0.4);	
+	color: #523A34;
 	animation: none;
 }
 
@@ -61,21 +60,28 @@ color: #523A34;
 }
 
 .button {
-    height: 55px;
-    width: 30%;
+    height: 40px;
+	width: 30%;
+	padding: 15px 30px;
+	margin: 5px !important;
     border: 2px solid #E5CA42;
     background-color:#F2DD6E;
     margin: 5px 0;
     border-radius: 3px;
     transition: 0.3s all;
     font-family: Arial, "sans-serif";
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     color: #fffce6;
     font-weight: bold;
-    text-decoration: none;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.bottomWrapper{
+	width: 475px;
+	display: flex;
+	margin: 30px 30% 0px 30%;
 }
 
 @keyframes pulse {
@@ -102,5 +108,9 @@ color: #523A34;
 		height: 120px;
 		grid-template-columns: 40px 40px 40px;
 		grid-template-rows: 40px 40px 40px;
+	}
+
+	.bottomWrapper{
+		width: 100%;
 	}
 }
